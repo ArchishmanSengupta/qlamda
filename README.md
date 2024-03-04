@@ -1,4 +1,4 @@
-Project Title: Quizify: Leveraging NLP Techniques
+Project Title: QLaMDA: Quizzing with Linguistic Analysis, Modeling, and Deep AI
 
 Project Description:
 
