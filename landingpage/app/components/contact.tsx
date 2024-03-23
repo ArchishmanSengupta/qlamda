@@ -1,6 +1,5 @@
 import { useForm } from '@formspree/react'
-import { LinkedinIcon, Loader2Icon, TwitterIcon } from 'lucide-react'
-import Discord from './icons/discord'
+import { Loader2Icon, TwitterIcon } from 'lucide-react'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
@@ -28,25 +27,25 @@ const Contact = () => {
                     <span className='hidden lg:block'>
                         If you have any questions, suggestions, or would like to
                         discuss potential collaborations, please don't hesitate
-                        to reach out. I'd love to hear from you!
+                        to reach out. We'd love to hear from you!
                     </span>
                     <span className='block lg:hidden'>
-                        Questions, ideas, or collaborations? Reach out—I'm all
+                        Questions, ideas, or collaborations? Reach out—We're all
                         ears!
                     </span>
                 </p>
                 <div className='flex justify-center lg:justify-start'>
                     <div className='flex flex-col gap-4 lg:items-start'>
                         <a
-                            href='https://twitter.com/NaderFerjani'
+                            href='https://twitter.com/archiexzzz'
                             className='inline-flex gap-2'
                             target='_blank'
                             rel='noopener noreferrer'
                         >
                             <TwitterIcon className='h-6 w-6 text-primary' />{' '}
-                            @NaderFerjani
+                            @archiexzzz
                         </a>
-                        <a
+                        {/* <a
                             href='https://www.linkedin.com/in/nader-ferjani/'
                             className='flex items-center gap-2'
                             target='_blank'
@@ -58,7 +57,7 @@ const Contact = () => {
                         <span className='flex items-center gap-2'>
                             <Discord className='h-6 w-6 fill-primary' />{' '}
                             <span>stormynight9</span>
-                        </span>
+                        </span> */}
                     </div>
                 </div>
             </div>
