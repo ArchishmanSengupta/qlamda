@@ -1,6 +1,6 @@
-# SaasStellar - SaaS Landing Page Template 🚀
+# QlaMDA Landing Page 🚀
 
-SaasStellar is a modern SaaS landing page template built with [Remix](https://remix.run/), [TailwindCSS](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/). It's packed with features:
+built with [Remix](https://remix.run/), [TailwindCSS](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/). It's packed with features:
 
 - **11 Themes to choose from.** 🌟
 - **SEO Ready with OpenGraph.** 🔍
@@ -10,10 +10,6 @@ SaasStellar is a modern SaaS landing page template built with [Remix](https://re
 - **Fully responsive and accessible.** 📱♿
 - **Form submissions with Formspree.** 📝
 - **Efficient performance with Partytown integration.** 🎉
-
-## Live Demo
-
-See it in action: [https://saasstellar.vercel.app/](https://saasstellar.vercel.app/)
 
 ## Get Started 🛠️
 
