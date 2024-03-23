@@ -16,16 +16,17 @@ built with [Remix](https://remix.run/), [TailwindCSS](https://tailwindcss.com/),
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/stormynight9/saasstellar
+   git clone https://github.com/ArchishmanSengupta/QLaMDA
    ```
 2. Install dependencies
     ```bash
-    cd sasstellar
-   pnpm install
+    cd QLaMDA
+    cd landingpage
+    npm install
    ```
 3. Start the development server:
     ```bash
-    pnpm dev
+    npm run dev
    ```
 
 ## License 📜
