@@ -1,6 +1,7 @@
 Project Title: QLaMDA: Quizzing with Linguistic Analysis, Modeling, and Deep AI
 
 Project Description:
+![Screenshot 2024-03-24 at 12 25 21 AM](https://github.com/ArchishmanSengupta/QLaMDA/assets/71402528/9a6026ff-d1d0-4cea-8504-a20a7da02ad8)
 
 The Advanced Quiz Generator project aims to develop a comprehensive toolset for generating assessment questions, including multiple-choice questions (MCQs), true/false questions, fill-in-the-blanks, and match-the-following questions, using state-of-the-art Natural Language Processing (NLP) techniques. The project will utilize Python programming, data structures, deep learning principles, and basic familiarity with Pytorch to implement various algorithms and models.
 
