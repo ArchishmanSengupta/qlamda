@@ -9,7 +9,7 @@ import Pricing from '~/components/pricing'
 
 export const meta: MetaFunction = () => {
     return [
-        { title: 'SaaSStellar' },
+        { title: 'QlaMDA - Generate Quiz with AI' },
         {
             name: 'description',
             content:
@@ -39,14 +39,14 @@ export const meta: MetaFunction = () => {
             rel: 'icon',
             type: 'image/png',
             sizes: '32x32',
-            href: '/favicon-32x32.png',
+            href: '/ql.png',
         },
         {
             tagName: 'link',
             rel: 'icon',
             type: 'image/png',
             sizes: '16x16',
-            href: '/favicon-16x16.png',
+            href: '/ql.png',
         },
         {
             tagName: 'link',

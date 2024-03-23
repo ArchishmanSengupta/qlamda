@@ -12,7 +12,7 @@ const Saastellar = ({ linearFrom, linearTo, ...props }: LeafProps) => (
         fill='none'
         {...props}
     >
-        {/* <path
+        <path
             fill='url(#saasstellar-a)'
             d='M15.027 8.592c.178.166 15.444 14.589 1.833 25.66C5.443 43.54 9.38 52.505 9.457 52.676c-6.6-10.631-1.383-18.105 4.913-24.76 6.263-6.618.72-19.18.658-19.323Z'
         />
@@ -23,7 +23,7 @@ const Saastellar = ({ linearFrom, linearTo, ...props }: LeafProps) => (
         <path
             fill='url(#saasstellar-c)'
             d='M2.706 0c.233.15 20.336 13.134 7.417 28.342C-.714 41.099 5.567 50.318 5.688 50.493c-9.61-10.533-5.333-19.978.323-28.73C11.636 13.06 2.806.148 2.706 0Z'
-        /> */}
+        />
         <defs>
             <linearGradient
                 id='saasstellar-a'
