@@ -5,6 +5,10 @@ cd qlamda_model
 pip install -r requirements.txt
 python mcq_generator.py
 ```
+### [Method] Distractor Generation using Wordnet
+
+![distractor_generation](https://github.com/ArchishmanSengupta/QLaMDA/assets/71402528/b36c9b97-9955-4144-87fc-708b91148fbb)
+
 
 ## BERT Word Sense Disambiguation (WSD)
 BERT Word Sense Disambiguation (WSD) is a method that employs BERT, a pre-trained language model, to determine the correct meaning of a word within a specific context by leveraging contextual embeddings and contextual information.
