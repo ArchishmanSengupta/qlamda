@@ -7,7 +7,8 @@ python mcq_generator.py
 ```
 ### [Method] Distractor Generation using Wordnet
 
-![distractor_generation](https://github.com/ArchishmanSengupta/QLaMDA/assets/71402528/b36c9b97-9955-4144-87fc-708b91148fbb)
+![disc](https://github.com/ArchishmanSengupta/QLaMDA/assets/71402528/90c9b603-b7be-46be-853c-604cc4aaa233)
+
 
 
 ## BERT Word Sense Disambiguation (WSD)
