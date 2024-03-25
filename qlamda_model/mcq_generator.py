@@ -1,3 +1,13 @@
+# ********************************************************************
+# *                 This code is contributed by authors:
+# *
+# *                          Archishman Sengupta
+# *                          Sudipta Ghosh
+# *                          Pritam Nag
+# *                          Subhodeep Sarkar
+# *                          Agniva Das
+# ********************************************************************
+
 import nltk
 from nltk.corpus import wordnet as wn
 
