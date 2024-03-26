@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 interface FormData {
@@ -19,7 +19,7 @@ export default function Home() {
     const [showMCQOptionsCount, setShowMCQOptionsCount] = useState<boolean>(true);
     const [colorExceed, setColorExceed] = useState<boolean>(false);
     const [wordCount, setWordCount] = useState<number>(0);
-    const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleTextChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
       const text = e.target.value
         
         const words = text.trim().split(/\s+/);
@@ -32,7 +32,7 @@ export default function Home() {
           setWordCount(words.length);
           setColorExceed(false);
         }
-    };
+    },[200,setUserText]);
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       const value = event.target.value;
@@ -89,7 +89,7 @@ export default function Home() {
                       <option value="5">5</option>
                   </select>
               </div>
-              <div className="w-1/2 pr-2">
+              <div className="w-1/2 ">
               <label htmlFor="difficultyLevel">Difficulty Level:</label><br />
                   <select className="w-full p-2 rounded-md" id="difficultyLevel" value={diffLevel} onChange={(e) => setDifficultyLevel(e.target.value)}>
                       <option value="easy">Easy</option>
