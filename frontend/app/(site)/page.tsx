@@ -53,7 +53,7 @@ export default function Home() {
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       const value = event.target.value;
       setQuestionType(value);
-      if(value === "MCQ"){
+      if(value === "mcq"){
         setShowMCQOptionsCount(true);
       }else{
         setShowMCQOptionsCount(false);
@@ -61,7 +61,6 @@ export default function Home() {
   };
     const handleSubmit = async() => {
       setLoading(true);
-
       const formData: FormData = {
         userText,
         aiModelQuality: 'high_quality',
@@ -166,7 +165,7 @@ export default function Home() {
 
             <div className="flex items-center mb-4">
                 <h2 className="mr-1 text-lg font-semibold">Title :</h2>
-                <h2 className="mr-10 text-lg font-semibold">Elons bitchi</h2>
+                <h2 className="mr-10 text-lg font-semibold">About Elon</h2>
             </div>
             
               {
