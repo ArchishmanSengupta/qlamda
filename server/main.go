@@ -7,43 +7,57 @@ import (
 )
 
 type Question struct {
-	Question       string   `json:"question"`
-	Answers        []string `json:"answers"`
-	CorrectChoices []string `json:"correct_choices"`
+	Question             string   `json:"question"`
+	Answers              []string `json:"answers"`
+	CorrectAnswerIndices []int    `json:"correct_answer_indices"`
+	CorrectAnswers       []string `json:"correct_answers"`
 }
 
 func getQuestionsHandler(w http.ResponseWriter, r *http.Request) {
 	questions := []Question{
 		{
-			Question: "What is the reason behind Tesla's decision to not accept payments in Bitcoin?",
+			Question: "Why did Tesla announce that it will not accept payments in Bitcoin?",
 			Answers: []string{
 				"Environmental concerns",
 				"Decreasing value of Bitcoin",
+				"Rapid increase in Dogecoin popularity",
 				"Lack of transaction efficiency",
-				"Government regulations",
 			},
-			CorrectChoices: []string{"Environmental concerns"},
+			CorrectAnswerIndices: []int{0},
+			CorrectAnswers:       []string{"Environmental concerns"},
 		},
 		{
-			Question: "Which cryptocurrency experienced a rally of about 20 percent after Elon Musk's tweet?",
+			Question: "What effect did Elon Musk's tweet about Dogecoin have on its value?",
 			Answers: []string{
-				"Litecoin",
-				"Ethereum",
-				"Dogecoin",
-				"Bitcoin",
+				"Decreased by 20 percent",
+				"Remained stable",
+				"Rallied by about 20 percent",
+				"Increased by 10 percent",
 			},
-			CorrectChoices: []string{"Dogecoin"},
+			CorrectAnswerIndices: []int{2},
+			CorrectAnswers:       []string{"Rallied by about 20 percent"},
 		},
 		{
-			Question: "What does Elon Musk believe in but is concerned about its impact on fossil fuel use?",
+			Question: "Why did Musk state that Tesla was suspending vehicle purchases using Bitcoin?",
 			Answers: []string{
-				"Bitcoin",
-				"Dogecoin",
-				"Crypto",
-				"Tesla",
+				"Decrease in crypto popularity",
+				"Lack of transaction efficiency",
+				"Fears of Bitcoin becoming the world's future currency",
+				"Concern about the use of fossil fuels for mining and transactions",
 			},
-			CorrectChoices: []string{"Crypto"},
+			CorrectAnswerIndices: []int{3},
+			CorrectAnswers:       []string{"Concern about the use of fossil fuels for mining and transactions"},
 		},
+	}
+
+	// Set CORS headers
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	// Respond to OPTIONS request
+	if r.Method == "OPTIONS" {
+		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
@@ -60,9 +74,6 @@ func main() {
 
 	log.Println("Server started on :8080")
 
-	// Run Ngrok to expose the server
-	// Usage: ngrok http <port>
-	// Example: ngrok http 8080
 	log.Println("Use Ngrok to expose the server on the internet.")
 	select {}
 }
