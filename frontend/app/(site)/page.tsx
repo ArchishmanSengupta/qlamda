@@ -1,13 +1,10 @@
 "use client"
-import Image from "next/image";
-import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import Card from "./components/Card";
-import axios from "axios";
-import getData from "./util/helper";
 import { Box, FormControlLabel, Switch } from "@mui/material";
+import { useCallback, useState } from "react";
+import Card from "./components/Card";
 import Loader from "./components/Loader";
+import { getData } from "./util/helper";
 // import Button from '@mui/material/Button';
 // import axios from "axios";
 
@@ -18,6 +15,12 @@ interface FormData {
   generationType: string;
   mcqOptionsCount?: string;
 }
+interface Question {
+  question: string;
+  answers: string[];
+  correct_answer_indices: number[];
+}
+
 export default function Home() {
     const [userText, setUserText] = useState<string>('');
     const [questionType, setQuestionType] = useState<string>('MCQ');
@@ -29,8 +32,7 @@ export default function Home() {
     const [wordCount, setWordCount] = useState<number>(0);
     const [checked,setChecked] = useState<boolean>(false);
     const [loading,setLoading] = useState<boolean>(false);
-
-    const router = useRouter();
+    const [data, setData] = useState<Question[]>([]);
 
     const handleTextChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
       const text = e.target.value
@@ -43,7 +45,6 @@ export default function Home() {
           setWordCount(200);
         } else {
           setUserText(text);
-          // console.log(text);
           setWordCount(words.length);
           setColorExceed(false);
         }
@@ -58,74 +59,29 @@ export default function Home() {
         setShowMCQOptionsCount(false);
       }
   };
-  const data=[
-    {
-        "question": "Why did Tesla announce that it will not accept payments in Bitcoin?",
-        "answers": [
-            "Environmental concerns",
-            "Decreasing value of Bitcoin",
-            "Rapid increase in Dogecoin popularity",
-            "Lack of transaction efficiency"
-        ],
-        "correct_answer_indices": [
-            0
-        ],
-        "correct_answers": [
-            "Environmental concerns"
-        ]
-    },
-    {
-        "question": "What effect did Elon Musk's tweet about Dogecoin have on its value?",
-        "answers": [
-            "Decreased by 20 percent",
-            "Remained stable",
-            "Rallied by about 20 percent",
-            "Increased by 10 percent"
-        ],
-        "correct_answer_indices": [
-            2
-        ],
-        "correct_answers": [
-            "Rallied by about 20 percent"
-        ]
-    },
-    {
-        "question": "Why did Musk state that Tesla was suspending vehicle purchases using Bitcoin?",
-        "answers": [
-            "Decrease in crypto popularity",
-            "Lack of transaction efficiency",
-            "Fears of Bitcoin becoming the world's future currency",
-            "Concern about the use of fossil fuels for mining and transactions"
-        ],
-        "correct_answer_indices": [
-            3
-        ],
-        "correct_answers": [
-            "Concern about the use of fossil fuels for mining and transactions"
-        ]
-    }
-];
     const handleSubmit = async() => {
+      setLoading(true);
+
       const formData: FormData = {
         userText,
         aiModelQuality: 'high_quality',
-        difficultyLevel:diffLevel.toLowerCase(),
+        difficultyLevel: diffLevel.toLowerCase(),
         generationType: questionType.toLowerCase(),
       };
+
       if (questionType === 'MCQ') {
-          formData['mcqOptionsCount'] = mcqOptionsCount;
+        formData['mcqOptionsCount'] = mcqOptionsCount;
       }
-      setLoading(true);
+
       const jsonFormData = JSON.stringify(formData);
-      console.log(jsonFormData);
-      
+
       try {
         const QuestionsData = await getData();
-        // console.log(QuestionsData); 
-        // assign the QuestionData to data after the api called succesfully. baki done ache 
+        setData(QuestionsData);
         setLoading(false);
       } catch (error) {
-          console.error("Error fetching data:", error);
+        console.error("Error fetching data:", error);
+        setLoading(false);
       }
     };
     // const label = { inputProps: { 'aria-label': 'Show Answers' } };
