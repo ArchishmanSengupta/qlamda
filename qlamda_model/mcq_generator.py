@@ -10,6 +10,10 @@
 
 import nltk
 from nltk.corpus import wordnet as wn
+import os
+from google.colab import drive
+import zipfile
+
 
 # Download WordNet data
 nltk.download('wordnet')
@@ -76,3 +80,19 @@ for index, synset_to_use in enumerate(synsets):
     print(f"\nOriginal word {index + 1}:", original_word.capitalize())
     print("Distractors:", distractors_calculated)
     print("Number of Distractors:", len(distractors_calculated))
+
+# Load Bert Model
+drive.mount('/content/drive/')
+
+# Define paths
+bert_zip_path = "/content/drive/My Drive/bert_model/bert_base_model.zip"
+extract_folder = "/content/drive/My Drive/bert_model/"
+
+# Check if the folder is already extracted
+if not os.path.isdir(extract_folder):
+    # Extract the zip file
+    with zipfile.ZipFile(bert_zip_path, 'r') as zip_ref:
+        zip_ref.extractall(extract_folder)
+    print("BERT model extracted successfully.")
+else:
+    print("BERT model already extracted.")
