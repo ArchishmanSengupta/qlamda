@@ -5,9 +5,10 @@ import { useCallback, useState } from "react";
 import Card from "./components/Card";
 import Loader from "./components/Loader";
 import { getData } from "./util/helper";
+import { useRouter } from 'next/navigation'
 // import Button from '@mui/material/Button';
 // import axios from "axios";
-
+import { questionDataStore } from "@/store/dataStore";
 interface FormData {
   userText: string;
   aiModelQuality: string;
@@ -21,6 +22,7 @@ interface Question {
   correct_answer_indices: number[];
 }
 
+
 export default function Home() {
     const [userText, setUserText] = useState<string>('');
     const [questionType, setQuestionType] = useState<string>('MCQ');
@@ -33,6 +35,8 @@ export default function Home() {
     const [checked,setChecked] = useState<boolean>(false);
     const [loading,setLoading] = useState<boolean>(false);
     const [data, setData] = useState<Question[]>([]);
+    const router = useRouter();
+    const questionStore = questionDataStore();
 
     const handleTextChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
       const text = e.target.value
@@ -59,34 +63,90 @@ export default function Home() {
         setShowMCQOptionsCount(false);
       }
   };
-    const handleSubmit = async() => {
-      setLoading(true);
-      const formData: FormData = {
-        userText,
-        aiModelQuality: 'high_quality',
-        difficultyLevel: diffLevel.toLowerCase(),
-        generationType: questionType.toLowerCase(),
-      };
-
-      if (questionType === 'MCQ') {
-        formData['mcqOptionsCount'] = mcqOptionsCount;
-      }
-
-      const jsonFormData = JSON.stringify(formData);
-
-      try {
-        const QuestionsData = await getData();
-        setData(QuestionsData);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      }
-    };
-    // const label = { inputProps: { 'aria-label': 'Show Answers' } };
-    const handleCheckAnswer=(e:React.ChangeEvent<HTMLInputElement>)=>{
-        setChecked(e.target.checked);
+  const dataa=[
+    {
+        "question": "Why did Tesla announce that it will not accept payments in Bitcoin?",
+        "answers": [
+            "Environmental concerns",
+            "Decreasing value of Bitcoin",
+            "Rapid increase in Dogecoin popularity",
+            "Lack of transaction efficiency"
+        ],
+        "correct_answer_indices": [
+            0
+        ],
+        "correct_answers": [
+            "Environmental concerns"
+        ]
+    },
+    {
+        "question": "What effect did Elon Musk's tweet about Dogecoin have on its value?",
+        "answers": [
+            "Decreased by 20 percent",
+            "Remained stable",
+            "Rallied by about 20 percent",
+            "Increased by 10 percent"
+        ],
+        "correct_answer_indices": [
+            2
+        ],
+        "correct_answers": [
+            "Rallied by about 20 percent"
+        ]
+    },
+    {
+        "question": "Why did Musk state that Tesla was suspending vehicle purchases using Bitcoin?",
+        "answers": [
+            "Decrease in crypto popularity",
+            "Lack of transaction efficiency",
+            "Fears of Bitcoin becoming the world's future currency",
+            "Concern about the use of fossil fuels for mining and transactions"
+        ],
+        "correct_answer_indices": [
+            3
+        ],
+        "correct_answers": [
+            "Concern about the use of fossil fuels for mining and transactions"
+        ]
     }
+];
+  const handleStudySubmit = async()=>{
+    // const QuestionsData = await getData();
+  
+    
+     questionStore.setQuestionData(dataa);
+    router.push('/Study');
+  }
+
+  const handleSubmit = async() => {
+    setLoading(true);
+    const formData: FormData = {
+      userText,
+      aiModelQuality: 'high_quality',
+      difficultyLevel: diffLevel.toLowerCase(),
+      generationType: questionType.toLowerCase(),
+    };
+
+    if (questionType === 'MCQ') {
+      formData['mcqOptionsCount'] = mcqOptionsCount;
+    }
+
+    const jsonFormData = JSON.stringify(formData);
+
+    try {
+      const QuestionsData = await getData();
+      questionStore.setQuestionData(QuestionsData);
+      setData(QuestionsData);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setLoading(false);
+    }
+  };
+  // const label = { inputProps: { 'aria-label': 'Show Answers' } };
+  const handleCheckAnswer=(e:React.ChangeEvent<HTMLInputElement>)=>{
+      setChecked(e.target.checked);
+  }
   return (
     <div className="bg-white-900  rounded-lg  h-full  w-full  overflow-hidden  overflow-y-auto ">
       
@@ -147,6 +207,7 @@ export default function Home() {
                   </div>
 
                   <Button className="w-full mt-2 p-2" onClick={handleSubmit}>Submit</Button>
+                  <Button className="w-full bg-green-900 mt-2 p-2" onClick={handleStudySubmit}>Study</Button>
 
         </div>
         
