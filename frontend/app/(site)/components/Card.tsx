@@ -31,3 +31,4 @@ export default function Card ({ question, answers,noOfQuestions,index,correct_an
         </div>
     )
 }
+
