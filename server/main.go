@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
 	"net/http"
 )
@@ -14,42 +13,6 @@ type Question struct {
 }
 
 func getQuestionsHandler(w http.ResponseWriter, r *http.Request) {
-	questions := []Question{
-		{
-			Question: "Why did Tesla announce that it will not accept payments in Bitcoin?",
-			Answers: []string{
-				"Environmental concerns",
-				"Decreasing value of Bitcoin",
-				"Rapid increase in Dogecoin popularity",
-				"Lack of transaction efficiency",
-			},
-			CorrectAnswerIndices: []int{0},
-			CorrectAnswers:       []string{"Environmental concerns"},
-		},
-		{
-			Question: "What effect did Elon Musk's tweet about Dogecoin have on its value?",
-			Answers: []string{
-				"Decreased by 20 percent",
-				"Remained stable",
-				"Rallied by about 20 percent",
-				"Increased by 10 percent",
-			},
-			CorrectAnswerIndices: []int{2},
-			CorrectAnswers:       []string{"Rallied by about 20 percent"},
-		},
-		{
-			Question: "Why did Musk state that Tesla was suspending vehicle purchases using Bitcoin?",
-			Answers: []string{
-				"Decrease in crypto popularity",
-				"Lack of transaction efficiency",
-				"Fears of Bitcoin becoming the world's future currency",
-				"Concern about the use of fossil fuels for mining and transactions",
-			},
-			CorrectAnswerIndices: []int{3},
-			CorrectAnswers:       []string{"Concern about the use of fossil fuels for mining and transactions"},
-		},
-	}
-
 	// Set CORS headers
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
@@ -60,12 +23,87 @@ func getQuestionsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Hardcoded JSON data
+	jsonData := `
+	[
+    {
+        "question": "Who was a poor farmer?",
+        "answers": [
+            "Rich",
+            "Will",
+            "Mike",
+            "Greg",
+            "Darren"
+        ],
+        "correct_answer_indices": [
+            2
+        ],
+        "correct_answers": [
+            "Mike"
+        ]
+    },
+    {
+        "question": "What did both mike and morris have?",
+        "answers": [
+            "Other families",
+            "Caretakers",
+            "Families",
+            "Adult children",
+            "Mothers"
+        ],
+        "correct_answer_indices": [
+            2
+        ],
+        "correct_answers": [
+            "Families"
+        ]
+    },
+    {
+        "question": "Who owned the largest jewelry shop in the village?",
+        "answers": [
+            "Brooks",
+            "Morris",
+            "Randle",
+            "Jennings",
+            "Greene"
+        ],
+        "correct_answer_indices": [
+            1
+        ],
+        "correct_answers": [
+            "Morris"
+        ]
+    },
+    {
+        "question": "Where was the largest jewelry shop located?",
+        "answers": [
+            "Stronghold",
+            "Island",
+            "Village",
+            "Capital city",
+            "Entire village"
+        ],
+        "correct_answer_indices": [
+            2
+        ],
+        "correct_answers": [
+            "Village"
+        ]
+    }
+]
+	`
+
+	// Respond with the JSON data
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(questions)
+	_, err := w.Write([]byte(jsonData))
+	if err != nil {
+		http.Error(w, "Error writing response", http.StatusInternalServerError)
+		return
+	}
 }
 
 func main() {
-	http.HandleFunc("/questions", getQuestionsHandler)
+	http.HandleFunc("/getQuestions", getQuestionsHandler)
 
 	// Start the server
 	go func() {
