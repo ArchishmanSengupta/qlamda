@@ -1,14 +1,12 @@
 "use client"
 import { Button } from "@/components/ui/button";
+import { questionDataStore } from "@/store/dataStore";
 import { Box, FormControlLabel, Switch } from "@mui/material";
+import { useRouter } from 'next/navigation';
 import { useCallback, useState } from "react";
 import Card from "./components/Card";
 import Loader from "./components/Loader";
 import { getData } from "./util/helper";
-import { useRouter } from 'next/navigation'
-// import Button from '@mui/material/Button';
-// import axios from "axios";
-import { questionDataStore } from "@/store/dataStore";
 interface FormData {
   userText: string;
   aiModelQuality: string;
@@ -109,12 +107,11 @@ export default function Home() {
             "Concern about the use of fossil fuels for mining and transactions"
         ]
     }
-];
+  ];
+
   const handleStudySubmit = async()=>{
-    // const QuestionsData = await getData();
-  
-    
-     questionStore.setQuestionData(dataa);
+    const QuestionsData = await getData();
+    questionStore.setQuestionData(QuestionsData);
     router.push('/Study');
   }
 
@@ -127,11 +124,9 @@ export default function Home() {
       generationType: questionType.toLowerCase(),
     };
 
-    if (questionType === 'MCQ') {
+    if (questionType === 'mcq') {
       formData['mcqOptionsCount'] = mcqOptionsCount;
     }
-
-    const jsonFormData = JSON.stringify(formData);
 
     try {
       const QuestionsData = await getData();
@@ -143,7 +138,7 @@ export default function Home() {
       setLoading(false);
     }
   };
-  // const label = { inputProps: { 'aria-label': 'Show Answers' } };
+
   const handleCheckAnswer=(e:React.ChangeEvent<HTMLInputElement>)=>{
       setChecked(e.target.checked);
   }
@@ -223,10 +218,9 @@ export default function Home() {
               <Button className="w-25 gap-8" >Edit</Button>
               <Button className="w-25 " >Export</Button>
             </div>
-
             <div className="flex items-center mb-4">
-                <h2 className="mr-1 text-lg font-semibold">Title :</h2>
-                <h2 className="mr-10 text-lg font-semibold">About Elon</h2>
+                <h2 className="mr-1 text-lg font-semibold">Summary :</h2>
+                {/* <h2 className="mr-10 text-lg font-semibold">About Elon</h2> */}
             </div>
             
               {
@@ -238,10 +232,7 @@ export default function Home() {
           </div>
             )
           }
-          
-          
         </div>
-
       </div>
     </div>
   );
