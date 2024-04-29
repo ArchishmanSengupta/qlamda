@@ -114,7 +114,13 @@ export default function Home() {
     questionStore.setQuestionData(QuestionsData);
     router.push('/Study');
   }
-
+  const shuffleArray = (array: any[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+};
   const handleSubmit = async() => {
     setLoading(true);
     const formData: FormData = {
@@ -127,9 +133,47 @@ export default function Home() {
     if (questionType === 'mcq') {
       formData['mcqOptionsCount'] = mcqOptionsCount;
     }
-
+    const jsonFormData = JSON.stringify(formData);
+    let QuestionsData: Question[] = [];
     try {
-      const QuestionsData = await getData();
+      // const QuestionsData = await getData();
+      
+      
+      if (questionType === 'MCQ') {
+        
+        QuestionsData = dataa.map(question => {
+            const { correct_answer_indices, ...rest } = question;
+            const correctIndex = correct_answer_indices[0];
+            const newOptionsCount = parseInt(mcqOptionsCount);
+            const correctAns =question.answers[correctIndex];
+            
+            let updatedCorrectIndex = Math.min(correctIndex, newOptionsCount - 1);
+            let updatedAns ;
+            console.log(updatedAns);
+            if(correctIndex<newOptionsCount){
+              updatedAns =question.answers.slice(0, newOptionsCount);
+            }else{
+              updatedAns =question.answers.slice(0, newOptionsCount-1);
+              updatedAns.push(correctAns);
+              
+              const shuffledArray = shuffleArray(updatedAns);
+                updatedAns=shuffledArray;
+                const newCorrectIndex = shuffledArray.indexOf(question.answers[correctIndex]);
+                updatedCorrectIndex=newCorrectIndex;
+            }
+            return {
+                ...rest,
+                answers: updatedAns,
+                correct_answer_indices: [updatedCorrectIndex]
+            };
+        });
+    } else {
+        
+        QuestionsData = dataa;
+    }
+
+
+
       questionStore.setQuestionData(QuestionsData);
       setData(QuestionsData);
       setLoading(false);
