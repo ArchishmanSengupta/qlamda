@@ -13,7 +13,10 @@ For text summarization, the T5 transformer model was utilized. T5, short for ”
 ### 2. Keyword Extraction
 Keyword extraction was enhanced using the Mul- tipartiteRank algorithm, which ranks keywords based on their relevance and importance within the text. Additionally, Sense2Vec was employed to un- derstand the semantic meaning of words, allowing for the identification of keywords that are semanti- cally similar to the original text. This step is vital for ensuring that the generated questions are con- textually relevant.
 
+<div style="color:white">
 [![\\ S(c_i) = (1 - \lambda) + \lambda \cdot \sum_{c_j \in \text{pred}(c_i)} \frac{w_{ij} \cdot S(c_j)}{\sum_{c_k \in \text{succ}(c_j)} w_{jk}}](https://latex.codecogs.com/svg.latex?%5C%5C%20S(c_i)%20%3D%20(1%20-%20%5Clambda)%20%2B%20%5Clambda%20%5Ccdot%20%5Csum_%7Bc_j%20%5Cin%20%5Ctext%7Bpred%7D(c_i)%7D%20%5Cfrac%7Bw_%7Bij%7D%20%5Ccdot%20S(c_j)%7D%7B%5Csum_%7Bc_k%20%5Cin%20%5Ctext%7Bsucc%7D(c_j)%7D%20w_%7Bjk%7D%7D)](#_)
+</div>
+
 
 
 ### 3. Question Generation
