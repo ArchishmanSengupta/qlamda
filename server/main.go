@@ -1,3 +1,6 @@
+/*
+a DUMMY SERVER API response for presentation
+*/
 package main
 
 import (
