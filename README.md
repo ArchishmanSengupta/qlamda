@@ -13,6 +13,8 @@ For text summarization, the T5 transformer model was utilized. T5, short for ”
 ### 2. Keyword Extraction
 Keyword extraction was enhanced using the Mul- tipartiteRank algorithm, which ranks keywords based on their relevance and importance within the text. Additionally, Sense2Vec was employed to un- derstand the semantic meaning of words, allowing for the identification of keywords that are semanti- cally similar to the original text. This step is vital for ensuring that the generated questions are con- textually relevant.
 
+S(c_i) = (1 - λ) + λ * ∑_{c_j ∈ pred(c_i)} (w_{ij} * S(c_j)) / ∑_{c_k ∈ succ(c_j)} w_{jk}
+
 <img width="401" alt="Screenshot 2024-05-16 at 10 17 41 PM" src="https://github.com/ArchishmanSengupta/qlamda/assets/71402528/792901b9-90c0-44c0-857c-28a4610d650c">
 
 
