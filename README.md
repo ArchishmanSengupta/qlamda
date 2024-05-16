@@ -13,8 +13,12 @@ For text summarization, the T5 transformer model was utilized. T5, short for ”
 ### 2. Keyword Extraction
 Keyword extraction was enhanced using the Mul- tipartiteRank algorithm, which ranks keywords based on their relevance and importance within the text. Additionally, Sense2Vec was employed to un- derstand the semantic meaning of words, allowing for the identification of keywords that are semanti- cally similar to the original text. This step is vital for ensuring that the generated questions are con- textually relevant.
 
+<img width="401" alt="Screenshot 2024-05-16 at 10 17 41 PM" src="https://github.com/ArchishmanSengupta/qlamda/assets/71402528/792901b9-90c0-44c0-857c-28a4610d650c">
+
+
 ### 3. Question Generation
 Question generation was also performed using the T5 model, but with a different fine-tuning ap- proach. The model was trained on the SQuAD (Stanford Question Answering Dataset) [2] to understand the context-answer-question format. Given a context and an answer, the model generates a question that could lead to the provided answer within the given context. This process is crucial for creating educational materials and quizzes.
 
 ### 4. Distractor Generation
 Distractors for multiple-choice questions were gen- erated using two approaches: WordNet and Sense2Vec. WordNet was used to find synonyms and related words that could serve as distrac- tors, while Sense2Vec was used to find semantically similar words. The Maximal Marginal Relevance (MMR) algorithm [3] was applied to select a di- verse set of distractors that are both relevant to the context and distinct from each other.
+<img width="416" alt="Screenshot 2024-05-16 at 10 17 52 PM" src="https://github.com/ArchishmanSengupta/qlamda/assets/71402528/2a8edef6-4c31-4370-a39b-fd7cad08b1bd">
