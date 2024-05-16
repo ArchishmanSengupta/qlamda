@@ -1,4 +1,0 @@
-transformers
-nltk
-torch
-google-drive
