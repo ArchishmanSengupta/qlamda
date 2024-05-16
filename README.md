@@ -1,4 +1,4 @@
-QLaMDA: txt2mcq generation
+QLaMDA: txt2Que generation
 
 ![Screenshot 2024-03-24 at 12 25 21 AM](https://github.com/ArchishmanSengupta/QLaMDA/assets/71402528/9a6026ff-d1d0-4cea-8504-a20a7da02ad8)
 
