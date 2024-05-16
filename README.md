@@ -24,3 +24,7 @@ Question generation was also performed using the T5 model, but with a different 
 ### 4. Distractor Generation
 Distractors for multiple-choice questions were gen- erated using two approaches: WordNet and Sense2Vec. WordNet was used to find synonyms and related words that could serve as distrac- tors, while Sense2Vec was used to find semantically similar words. The Maximal Marginal Relevance (MMR) algorithm [3] was applied to select a di- verse set of distractors that are both relevant to the context and distinct from each other.
 <img width="416" alt="Screenshot 2024-05-16 at 10 17 52 PM" src="https://github.com/ArchishmanSengupta/qlamda/assets/71402528/2a8edef6-4c31-4370-a39b-fd7cad08b1bd">
+
+### 5. JSON formatted response
+
+![qlamda_response](https://github.com/ArchishmanSengupta/qlamda/assets/71402528/0f9f93f5-0d9a-4470-8bc7-c416aee07f2e)
